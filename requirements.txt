@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+python-dotenv
+psutil
+requests
+pyinstaller
+aiofiles
+python-multipart
