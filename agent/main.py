@@ -8,7 +8,7 @@ from collector import SystemCollector
 load_dotenv()
 
 # Configuration
-SERVER_URL = os.getenv("SERVER_URL", "http://192.168.62.122:8000/api/v1")
+SERVER_URL = os.getenv("SERVER_URL", "http://10.53.121.122:8000/api/v1")
 API_KEY = os.getenv("AGENT_API_KEY", "secret-agent-key")
 POLL_INTERVAL = int(os.getenv("POLL_INTERVAL", "5"))
 

@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 # Configuration (Target for setup_lab.py automation)
-SERVER_URL = os.getenv("SERVER_URL", "http://192.168.62.122:8000/api/v1")
+SERVER_URL = os.getenv("SERVER_URL", "http://10.53.121.122:8000/api/v1")
 
 class RoundedButton(tk.Canvas):
     def __init__(self, parent, width, height, corner_radius, padding=0, color="#ff6600", fg="#000000", command=None, text="", state="normal"):
