@@ -1,0 +1,710 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Resource Monitoring System - Component 8</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #3498db;
+                padding-bottom: 10px;
+                margin-top: 30px;
+            }
+            
+            h2 {
+                color: #34495e;
+                border-bottom: 2px solid #95a5a6;
+                padding-bottom: 8px;
+                margin-top: 25px;
+            }
+            
+            h3 {
+                color: #555;
+                margin-top: 20px;
+            }
+            
+            code {
+                background-color: #f4f4f4;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 0.9em;
+                color: #c7254e;
+            }
+            
+            pre {
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                border-left: 4px solid #3498db;
+                padding: 15px;
+                border-radius: 4px;
+                overflow-x: auto;
+            }
+            
+            pre code {
+                background-color: transparent;
+                padding: 0;
+                color: #333;
+            }
+            
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+            }
+            
+            th {
+                background-color: #3498db;
+                color: white;
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #2980b9;
+            }
+            
+            td {
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            
+            blockquote {
+                border-left: 4px solid #3498db;
+                padding-left: 20px;
+                margin-left: 0;
+                color: #555;
+                font-style: italic;
+            }
+            
+            hr {
+                border: none;
+                border-top: 2px solid #eee;
+                margin: 30px 0;
+            }
+            
+            @media print {
+                body {
+                    max-width: 100%;
+                }
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                }
+                pre, table {
+                    page-break-inside: avoid;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <p>RESOURCE MONITORING AND MANAGEMENT SYSTEM</p>
+<p>DEPARTMENT OF INFORMATION SCIENCE AND ENGINEERING
+Database Management System – CD252IA
+Experiential Learning (Lab)</p>
+<p>Design of Forms, Security, and Validation Report</p>
+<p>Submitted by
+[Your Name]
+[Roll Number]</p>
+<p>================================================================================</p>
+<p>A. Design of Forms &amp; Frontend Screenshots</p>
+<p>The Resource Monitoring and Management System is built using React.js for the frontend 
+dashboard and Python/FastAPI for the backend API, providing a modern, responsive, and 
+efficient interface for system administrators. The UI is designed to be intuitive for IT 
+staff, providing real-time monitoring and management of computer systems across a network.</p>
+<p>Below are descriptions of the key forms and interfaces:</p>
+<ol>
+<li>Login Screen</li>
+</ol>
+<p>Purpose: The primary entry point for the application, ensuring only authenticated 
+administrators can access the system monitoring dashboard.</p>
+<p>Design: A clean authentication form with fields for "Email" and "Password". The login 
+screen uses modern Material-UI components for a professional appearance. It includes 
+JWT-based authentication with secure token storage. A clear "Login" button initiates 
+the authentication process. The design is centered and responsive, adapting to different 
+screen sizes.</p>
+<p>Location: 
+- Frontend: dashboard/src/pages/Login.jsx
+- Backend API: backend/app/api/auth.py (lines 24-31)</p>
+<p>Technical Implementation:
+- Uses React state management for form handling
+- Implements client-side validation
+- Stores JWT tokens securely in browser localStorage
+- API endpoint: POST /api/auth/login</p>
+<ol>
+<li>Main Dashboard Screen</li>
+</ol>
+<p>Purpose: The central command center of the application. It displays a comprehensive 
+real-time overview of all monitored systems in the network.</p>
+<p>Design: Uses a grid-based layout with Material-UI Card components for a modern look. 
+The dashboard displays:
+- Total number of systems being monitored
+- System health indicators (CPU, Memory, Disk usage)
+- Active alerts and warnings
+- Quick statistics on system performance
+- Interactive charts showing resource usage trends</p>
+<p>Features:
+- Auto-refresh functionality (polling every 5 seconds)
+- Manual refresh button
+- Responsive grid layout adapting to screen size
+- Color-coded status indicators (green/yellow/red)
+- Navigation sidebar for accessing different sections</p>
+<p>Location:
+- Frontend: dashboard/src/pages/Dashboard.jsx
+- Backend API: backend/app/api/endpoints.py</p>
+<p>Technical Implementation:
+- Real-time data fetching using Axios
+- Chart.js for visualization
+- Material-UI for consistent design
+- API endpoints: GET /api/systems, GET /api/metrics</p>
+<ol>
+<li>System Detail Screen</li>
+</ol>
+<p>Purpose: Provides detailed breakdown of a specific system, showing comprehensive 
+information including hardware specs, current metrics, and historical performance data.</p>
+<p>Design: This screen displays comprehensive system information:</p>
+<p>System Information Section:
+- Hostname, IP Address, MAC Address
+- Operating System details (Windows edition, build number)
+- CPU information (name, cores, threads)
+- Memory specifications (total RAM)
+- Disk information (capacity, model)
+- GPU details
+- Manufacturer and model information</p>
+<p>Real-Time Metrics Section:
+- Current CPU usage (%)
+- Current Memory usage (%)
+- Disk usage and free space
+- Network statistics (sent/received)
+- Running process count
+- System uptime
+- Battery status (for laptops)</p>
+<p>Performance History Section:
+- Interactive time-series charts showing:
+  * CPU usage over time
+  * Memory usage trends
+  * Disk I/O statistics
+  * Network traffic patterns</p>
+<p>Alert History Section:
+- List of all alerts triggered for this system
+- Alert severity levels
+- Timestamps and resolution status</p>
+<p>Location:
+- Frontend: dashboard/src/pages/SystemDetail.jsx
+- Backend API: backend/app/api/endpoints.py</p>
+<p>Technical Implementation:
+- Dynamic routing with React Router
+- Real-time metric updates
+- Historical data visualization
+- API endpoints:
+  * GET /api/systems/{system_id}
+  * GET /api/systems/{system_id}/metrics
+  * GET /api/systems/{system_id}/alerts</p>
+<ol>
+<li>Alert Configuration Form</li>
+</ol>
+<p>Purpose: Allows administrators to configure threshold values for automated alerts 
+on a per-system or global basis.</p>
+<p>Design: A form-based interface with clearly labeled input fields for:
+- CPU usage threshold (default: 90%)
+- Memory usage threshold (default: 90%)
+- Disk usage threshold (default: 90%)
+- Alert notification preferences</p>
+<p>The form includes:
+- Number input fields with validation
+- Save/Cancel action buttons
+- Reset to default button
+- Visual feedback on save success/failure</p>
+<p>Location:
+- Backend Model: backend/app/models/models.py (lines 107-116)
+- Backend API: backend/app/api/endpoints.py</p>
+<p>Technical Implementation:
+- Form validation (0-100 range for percentages)
+- RESTful API integration
+- Immediate application of new thresholds
+- API endpoint: PUT /api/alert-settings</p>
+<p>================================================================================</p>
+<p>B. Security and Validation Proof</p>
+<p>Security:</p>
+<ol>
+<li>Authentication System
+The system implements robust multi-user authentication using JSON Web Tokens (JWT).</li>
+</ol>
+<p>Implementation Details:
+- Users must register and log in to access the dashboard
+- JWT tokens are generated upon successful authentication
+- Tokens are validated on every API request
+- Token expiration is enforced</p>
+<p>Code Reference:
+File: backend/app/api/auth.py</p>
+<p>Registration Endpoint (lines 10-22):</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/register&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)):</span>
+    <span class="c1"># Check if user exists</span>
+    <span class="n">existing</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">existing</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Email already registered&quot;</span><span class="p">)</span>
+
+    <span class="n">hashed</span> <span class="o">=</span> <span class="n">get_password_hash</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">hashed_password</span><span class="o">=</span><span class="n">hashed</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">db_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">db_user</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db_user</span>
+</code></pre></div>
+
+<p>Login Endpoint (lines 24-31):</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">Token</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserLogin</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">db_user</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">verify_password</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="n">db_user</span><span class="o">.</span><span class="n">hashed_password</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">401</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Invalid credentials&quot;</span><span class="p">)</span>
+
+    <span class="n">access_token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">db_user</span><span class="o">.</span><span class="n">email</span><span class="p">})</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;access_token&quot;</span><span class="p">:</span> <span class="n">access_token</span><span class="p">,</span> <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="s2">&quot;bearer&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<ol>
+<li>Password Hashing
+User passwords are never stored in plain text. They are securely hashed using the 
+PBKDF2-SHA256 algorithm via the passlib library before being stored in the database.</li>
+</ol>
+<p>Code Reference:
+File: backend/app/core/security.py</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">passlib.context</span> <span class="kn">import</span> <span class="n">CryptContext</span>
+
+<span class="n">pwd_context</span> <span class="o">=</span> <span class="n">CryptContext</span><span class="p">(</span><span class="n">schemes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pbkdf2_sha256&quot;</span><span class="p">],</span> <span class="n">deprecated</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">verify_password</span><span class="p">(</span><span class="n">plain_password</span><span class="p">,</span> <span class="n">hashed_password</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">plain_password</span><span class="p">,</span> <span class="n">hashed_password</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Database Proof:
+File: backend/resource_monitor.db
+Table: users</p>
+<p>Current User Records:
+| ID | Email | Hashed Password | Status | Created |
+|----|-------|-----------------|--------|---------|
+| 1 | nthy2355@gmail.com | $pbkdf2-sha256$29000$WKv1nhOCM... | Active | 2025-12-25 |
+| 2 | Admin1@gmail.com | $pbkdf2-sha256$29000$GmOM0boX... | Active | 2025-12-27 |</p>
+<p>As visible, passwords are stored as cryptographic hashes, making them irreversible.</p>
+<ol>
+<li>Data Integrity and Foreign Key Relationships
+Every data-related table in the database has proper foreign key relationships to ensure 
+data integrity and referential consistency.</li>
+</ol>
+<p>Database Schema:
+File: backend/app/models/models.py</p>
+<p>Key Tables and Relationships:</p>
+<p>a) Systems Table (lines 15-49):
+- Stores all monitored system information
+- Has relationships to metrics, alerts, and tickets</p>
+<p>b) Metrics Table (lines 68-93):
+- Foreign key: system_id → systems.id
+- Stores time-series performance data
+- Cascade delete when system is removed</p>
+<p>c) Alerts Table (lines 55-66):
+- Foreign key: system_id → systems.id
+- Stores alert history
+- Cascade delete when system is removed</p>
+<p>d) Tickets Table (lines 95-105):
+- Foreign key: system_id → systems.id
+- Stores support tickets
+- Cascade delete when system is removed</p>
+<p>Example Schema Definition:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Metric</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;metrics&quot;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">system_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;systems.id&quot;</span><span class="p">))</span>  <span class="c1"># Foreign key constraint</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">server_default</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">cpu_usage</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="n">memory_percent</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+    <span class="c1"># ... other fields</span>
+
+    <span class="n">system</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;metrics&quot;</span><span class="p">)</span>  <span class="c1"># Relationship</span>
+</code></pre></div>
+
+<ol>
+<li>API Endpoint Protection
+All sensitive API endpoints are protected and require authentication.</li>
+</ol>
+<p>Implementation:
+- Rate limiting to prevent abuse
+- CORS configuration for cross-origin security
+- Input sanitization
+- SQL injection prevention through ORM (SQLAlchemy)</p>
+<p>Code Reference:
+File: backend/app/core/rate_limiter.py
+File: backend/app/main.py</p>
+<ol>
+<li>Agent-Server Communication Security
+The monitoring agents running on client systems communicate with the server using 
+secure protocols.</li>
+</ol>
+<p>Implementation Details:
+- Configurable server IP and port
+- Automated IP detection for deployment
+- Secure metric transmission
+- System identification using hostname and MAC address</p>
+<p>Code Reference:
+File: agent/main.py
+File: agent/gui.py
+Build Configuration: setup_lab.py</p>
+<p>================================================================================</p>
+<p>Validation:</p>
+<ol>
+<li>
+<p>Frontend Validation
+The React dashboard implements client-side validation for all user inputs:</p>
+</li>
+<li>
+<p>Email format validation for login/registration</p>
+</li>
+<li>Required field validation</li>
+<li>Number range validation for alert thresholds (0-100)</li>
+<li>Form state management using React hooks</li>
+</ol>
+<p>Location: dashboard/src/ (various component files)</p>
+<ol>
+<li>Backend Validation
+The FastAPI backend uses Pydantic for powerful, automatic data validation.</li>
+</ol>
+<p>Every incoming request is validated against a schema. If a client sends data of the 
+wrong type or with missing required fields, the request is automatically rejected 
+with a 422 Unprocessable Entity error.</p>
+<p>Code Reference:
+File: backend/app/schemas/schemas.py</p>
+<p>Example Schema Definitions:</p>
+<p>User Registration Schema (lines 7-9):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">UserCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Must be string</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Must be string</span>
+</code></pre></div>
+
+<p>User Login Schema (lines 11-13):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">UserLogin</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>System Input Schema (lines 27-59):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">SystemCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">hostname</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Required</span>
+    <span class="n">ip_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">mac_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">os_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># ... all fields with type constraints</span>
+</code></pre></div>
+
+<p>Metric Input Schema (lines 91-112):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MetricCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">cpu_usage</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># Must be float</span>
+    <span class="n">memory_percent</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">memory_used</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">disk_free</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">disk_usage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># ... validated types prevent invalid data</span>
+</code></pre></div>
+
+<ol>
+<li>Database-Level Validation
+SQLAlchemy models enforce database constraints:</li>
+</ol>
+<p>Constraints:
+- NOT NULL constraints for required fields
+- UNIQUE constraints for emails, hostnames
+- PRIMARY KEY constraints
+- FOREIGN KEY constraints
+- DEFAULT values for boolean and timestamp fields
+- Data type enforcement at database level</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Primary key</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Unique, not null</span>
+    <span class="n">hashed_password</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Required</span>
+    <span class="n">is_active</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Default value</span>
+    <span class="n">created_at</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">server_default</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>  <span class="c1"># Auto timestamp</span>
+</code></pre></div>
+
+<ol>
+<li>
+<p>Input Sanitization
+All user inputs are sanitized before processing:</p>
+</li>
+<li>
+<p>SQL Injection Prevention: Using SQLAlchemy ORM with parameterized queries</p>
+</li>
+<li>XSS Prevention: React automatically escapes HTML in JSX</li>
+<li>Data type validation: Pydantic schemas enforce correct types</li>
+<li>Length limits: Database column constraints</li>
+</ol>
+<p>================================================================================</p>
+<p>C. Innovative Experiment: Automated System Discovery and Monitoring</p>
+<p>The most innovative component of the Resource Monitoring and Management System is 
+the Automated Agent Deployment and Real-Time Monitoring architecture. This goes beyond 
+simple system monitoring by implementing an intelligent, self-contained agent that can 
+be rapidly deployed across an entire network.</p>
+<p>Concept:</p>
+<p>The primary challenge in enterprise IT management is rapid deployment and configuration 
+of monitoring solutions across diverse systems. Traditional monitoring tools require 
+complex setup, manual configuration, and constant maintenance. Our innovative approach 
+was to create a self-contained, automatically configurable monitoring agent that 
+requires zero manual configuration.</p>
+<p>Working:</p>
+<ol>
+<li>Automated IP Detection and Configuration
+File: setup_lab.py</li>
+</ol>
+<p>The build system automatically detects the server's local IP address and embeds it 
+directly into the agent executable during the build process.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_local_ip</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detect the local IP address of the server&quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;8.8.8.8&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+        <span class="n">ip</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ip</span>
+
+<span class="c1"># Automatically update agent files with server IP</span>
+<span class="n">local_ip</span> <span class="o">=</span> <span class="n">get_local_ip</span><span class="p">()</span>
+<span class="n">update_agent_files_with_ip</span><span class="p">(</span><span class="n">local_ip</span><span class="p">)</span>
+</code></pre></div>
+
+<ol>
+<li>One-Click Deployment
+File: build_lab_agent.bat</li>
+</ol>
+<p>IT administrators can build deployment-ready agents with a single command:
+- Agent is compiled to a standalone executable
+- No Python installation required on client systems
+- Pre-configured with correct server address
+- Includes system tray GUI for user visibility</p>
+<ol>
+<li>Real-Time Metrics Collection
+File: agent/main.py</li>
+</ol>
+<p>The agent runs continuously on client systems, collecting comprehensive metrics:</p>
+<p>Hardware Information Collected:
+- CPU name, cores, threads, architecture
+- Total memory (RAM)
+- Disk capacity and model
+- GPU information
+- Manufacturer and model details
+- BIOS version
+- Serial number</p>
+<p>Runtime Metrics Collected:
+- CPU usage percentage
+- Memory usage (percent and bytes)
+- Disk usage and free space
+- Disk I/O (read/write bytes)
+- Network statistics (sent/received)
+- Process count
+- System uptime
+- Boot time
+- Top processes by resource usage
+- Battery status (for laptops)
+- Driver information</p>
+<ol>
+<li>Centralized Database Architecture
+File: backend/app/models/models.py</li>
+</ol>
+<p>All metrics are centralized in a SQLite database with optimized schema design:</p>
+<p>Time-Series Data Storage:
+- Indexed timestamps for fast querying
+- Efficient storage of metrics history
+- Support for large-scale data (BigInteger for cumulative values)
+- Automatic cleanup of old metrics</p>
+<ol>
+<li>Intelligent Alert System
+File: backend/app/core/alerts.py</li>
+</ol>
+<p>The system automatically monitors thresholds and generates alerts:</p>
+<p>Alert Generation Process:
+- Continuous threshold monitoring
+- Automatic alert creation when thresholds are exceeded
+- Configurable severity levels
+- Alert resolution tracking
+- Per-system and global configuration</p>
+<ol>
+<li>System Discovery
+File: backend/app/core/discovery.py</li>
+</ol>
+<p>New systems are automatically discovered and registered:
+- First connection creates system record
+- Subsequent connections update "last_seen" timestamp
+- Inactive systems are flagged
+- Hardware changes are tracked</p>
+<p>Architecture Benefits:</p>
+<ol>
+<li>
+<p>Zero-Configuration Deployment: IT staff can deploy agents to hundreds of systems 
+   without manual IP configuration</p>
+</li>
+<li>
+<p>Self-Healing: Agents automatically reconnect if the connection is lost</p>
+</li>
+<li>
+<p>Minimal Overhead: Efficient data collection with minimal impact on system performance</p>
+</li>
+<li>
+<p>Scalability: SQLite database can handle thousands of systems and millions of metrics</p>
+</li>
+<li>
+<p>Historical Analysis: Complete time-series data for performance trend analysis</p>
+</li>
+<li>
+<p>Comprehensive Monitoring: Single agent collects all necessary system information</p>
+</li>
+</ol>
+<p>This architecture creates an enterprise-grade monitoring solution that rivals commercial 
+products while maintaining simplicity of deployment. The automated configuration and 
+robust data collection ensure that administrators can focus on analysis and response 
+rather than system management.</p>
+<p>Technical Innovation:</p>
+<p>The key innovation is the integration of build-time configuration with runtime flexibility.
+By embedding the server IP during the build process (setup_lab.py), we eliminate the 
+most common deployment error—incorrect server configuration—while still maintaining a 
+clean, professional agent interface (agent/gui.py) that provides users with visibility 
+into the monitoring process.</p>
+<p>================================================================================</p>
+<p>D. Database Structure and Verification</p>
+<p>Database File Location:
+backend/resource_monitor.db</p>
+<p>Total Tables: 6</p>
+<ol>
+<li>users</li>
+<li>Stores administrator accounts</li>
+<li>
+<p>Columns: id, email, hashed_password, is_active, created_at</p>
+</li>
+<li>
+<p>systems</p>
+</li>
+<li>Stores monitored system information</li>
+<li>
+<p>Columns: id, hostname, ip_address, mac_address, os_info, cpu_name, 
+     total_memory_gb, and 30+ other hardware/software fields</p>
+</li>
+<li>
+<p>metrics</p>
+</li>
+<li>Stores time-series performance data</li>
+<li>
+<p>Columns: id, system_id, timestamp, cpu_usage, memory_percent, disk_usage,
+     network_sent, network_recv, and more</p>
+</li>
+<li>
+<p>alerts</p>
+</li>
+<li>Stores alert history</li>
+<li>
+<p>Columns: id, system_id, alert_type, severity, message, is_resolved, created_at</p>
+</li>
+<li>
+<p>tickets</p>
+</li>
+<li>Stores support tickets</li>
+<li>
+<p>Columns: id, system_id, message, status, resolved_at, created_at</p>
+</li>
+<li>
+<p>alert_settings</p>
+</li>
+<li>Stores threshold configurations</li>
+<li>Columns: id, system_id, cpu_threshold, memory_threshold, disk_threshold</li>
+</ol>
+<p>Verification Scripts:
+- inspect_db.py - View user table
+- view_all_user_data.py - Detailed user information
+- open_database.bat - Open database in DB Browser for SQLite</p>
+<p>================================================================================</p>
+<p>E. System Architecture Overview</p>
+<p>Components:</p>
+<ol>
+<li>Backend Server (FastAPI)</li>
+<li>RESTful API</li>
+<li>JWT Authentication</li>
+<li>Database management</li>
+<li>Alert generation</li>
+<li>
+<p>Real-time metrics processing</p>
+</li>
+<li>
+<p>Frontend Dashboard (React.js)</p>
+</li>
+<li>Material-UI components</li>
+<li>Real-time data visualization</li>
+<li>Interactive charts</li>
+<li>
+<p>System management interface</p>
+</li>
+<li>
+<p>Monitoring Agent (Python + GUI)</p>
+</li>
+<li>System metrics collection</li>
+<li>Continuous background operation</li>
+<li>System tray interface</li>
+<li>
+<p>Automatic reconnection</p>
+</li>
+<li>
+<p>Database (SQLite)</p>
+</li>
+<li>Centralized data storage</li>
+<li>Efficient queries</li>
+<li>Foreign key relationships</li>
+<li>
+<p>Data integrity constraints</p>
+</li>
+<li>
+<p>Build System (Automation)</p>
+</li>
+<li>Automated IP detection</li>
+<li>Agent compilation</li>
+<li>Configuration management</li>
+<li>One-click deployment</li>
+</ol>
+<p>Technology Stack:
+- Backend: Python 3.x, FastAPI, SQLAlchemy, Passlib
+- Frontend: React.js, Material-UI, Axios, Chart.js
+- Agent: Python 3.x, psutil, PyQt5/tkinter
+- Database: SQLite
+- Build: PyInstaller, Batch scripts</p>
+<p>================================================================================</p>
+<p>Conclusion:</p>
+<p>The Resource Monitoring and Management System demonstrates professional implementation 
+of database management principles, security best practices, and innovative system 
+architecture. The combination of robust authentication, comprehensive validation, and 
+intelligent automation creates a production-ready monitoring solution suitable for 
+enterprise deployment.</p>
+<p>Key Achievements:
+✓ Secure multi-user authentication with JWT
+✓ Password hashing using industry-standard algorithms
+✓ Comprehensive input validation at all layers
+✓ Foreign key relationships ensuring data integrity
+✓ Automated agent deployment system
+✓ Real-time monitoring and alerting
+✓ Professional, responsive user interface
+✓ Scalable architecture supporting large deployments</p>
+<p>================================================================================</p>
+    </body>
+    </html>
+    

@@ -1,0 +1,428 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Resource Monitoring System - Component 8</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #3498db;
+                padding-bottom: 10px;
+                margin-top: 30px;
+            }
+            
+            h2 {
+                color: #34495e;
+                border-bottom: 2px solid #95a5a6;
+                padding-bottom: 8px;
+                margin-top: 25px;
+            }
+            
+            h3 {
+                color: #555;
+                margin-top: 20px;
+            }
+            
+            code {
+                background-color: #f4f4f4;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 0.9em;
+                color: #c7254e;
+            }
+            
+            pre {
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                border-left: 4px solid #3498db;
+                padding: 15px;
+                border-radius: 4px;
+                overflow-x: auto;
+            }
+            
+            pre code {
+                background-color: transparent;
+                padding: 0;
+                color: #333;
+            }
+            
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+            }
+            
+            th {
+                background-color: #3498db;
+                color: white;
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #2980b9;
+            }
+            
+            td {
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            
+            blockquote {
+                border-left: 4px solid #3498db;
+                padding-left: 20px;
+                margin-left: 0;
+                color: #555;
+                font-style: italic;
+            }
+            
+            hr {
+                border: none;
+                border-top: 2px solid #eee;
+                margin: 30px 0;
+            }
+            
+            @media print {
+                body {
+                    max-width: 100%;
+                }
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                }
+                pre, table {
+                    page-break-inside: avoid;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="resource-monitoring-and-management-system">Resource Monitoring and Management System</h1>
+<h2 id="quick-reference-guide-component-8-documentation">Quick Reference Guide - Component 8 Documentation</h2>
+<hr />
+<h2 id="document-structure">📋 Document Structure</h2>
+<p>This document follows the same structure as the Pharmacy Inventory Management System (PharmPal) Component 8 report:</p>
+<h3 id="a-design-of-forms-frontend-screenshots">A. Design of Forms &amp; Frontend Screenshots</h3>
+<ul>
+<li>Login Screen</li>
+<li>Main Dashboard Screen</li>
+<li>System Detail Screen</li>
+<li>Alert Configuration Form</li>
+</ul>
+<h3 id="b-security-and-validation-proof">B. Security and Validation Proof</h3>
+<ul>
+<li>Authentication System (JWT)</li>
+<li>Password Hashing (PBKDF2-SHA256)</li>
+<li>Data Integrity (Foreign Keys)</li>
+<li>API Endpoint Protection</li>
+<li>Agent-Server Communication</li>
+</ul>
+<h3 id="c-innovative-experiment">C. Innovative Experiment</h3>
+<ul>
+<li>Automated Agent Deployment</li>
+<li>Real-Time Monitoring Architecture</li>
+<li>Zero-Configuration System</li>
+</ul>
+<h3 id="d-database-structure">D. Database Structure</h3>
+<ul>
+<li>6 tables with full relationships</li>
+<li>Verification scripts included</li>
+</ul>
+<hr />
+<h2 id="security-implementation-summary">🔐 Security Implementation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Security Feature</th>
+<th>Implementation</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>JWT Tokens</td>
+<td><code>backend/app/api/auth.py</code></td>
+</tr>
+<tr>
+<td><strong>Password Storage</strong></td>
+<td>PBKDF2-SHA256 Hash</td>
+<td><code>backend/app/core/security.py</code></td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>SQLite with constraints</td>
+<td><code>backend/resource_monitor.db</code></td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>Pydantic Schemas</td>
+<td><code>backend/app/schemas/schemas.py</code></td>
+</tr>
+<tr>
+<td><strong>SQL Injection</strong></td>
+<td>SQLAlchemy ORM</td>
+<td>All database queries</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="current-users-verification">👥 Current Users (Verification)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">Database</span><span class="o">:</span><span class="w"> </span><span class="n">backend</span><span class="o">/</span><span class="n">resource_monitor</span><span class="o">.</span><span class="na">db</span>
+<span class="n">Table</span><span class="o">:</span><span class="w"> </span><span class="n">users</span>
+
+<span class="n">ID</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Email</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">Password</span><span class="w"> </span><span class="n">Hash</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="n">Status</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Created</span>
+<span class="o">---|------------------------|----------------------------|--------|------------</span>
+<span class="mi">1</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">nthy2355</span><span class="err">@</span><span class="n">gmail</span><span class="o">.</span><span class="na">com</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">$pbkdf2</span><span class="o">-</span><span class="n">sha256$29000$</span><span class="o">...</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Active</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">25</span>
+<span class="mi">2</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Admin1</span><span class="err">@</span><span class="n">gmail</span><span class="o">.</span><span class="na">com</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">$pbkdf2</span><span class="o">-</span><span class="n">sha256$29000$</span><span class="o">...</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Active</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">27</span>
+</code></pre></div>
+
+<p><strong>✓ Passwords are securely hashed - original passwords cannot be retrieved</strong></p>
+<hr />
+<h2 id="database-tables">🗃️ Database Tables</h2>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="nx">records</span><span class="p">)</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">hashed_password</span><span class="p">,</span><span class="w"> </span><span class="nx">is_active</span><span class="p">,</span><span class="w"> </span><span class="nx">created_at</span>
+
+<span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="nx">systems</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">hostname</span><span class="p">,</span><span class="w"> </span><span class="nx">ip_address</span><span class="p">,</span><span class="w"> </span><span class="nx">mac_address</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">os_info</span><span class="p">,</span><span class="w"> </span><span class="nx">cpu_name</span><span class="p">,</span><span class="w"> </span><span class="nx">memory</span><span class="p">,</span><span class="w"> </span><span class="nx">disk</span><span class="p">,</span><span class="w"> </span><span class="nx">gpu</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">Foreign</span><span class="w"> </span><span class="nx">keys</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">metrics</span><span class="p">,</span><span class="w"> </span><span class="nx">alerts</span><span class="p">,</span><span class="w"> </span><span class="nx">tickets</span>
+
+<span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="nx">metrics</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">system_id</span><span class="w"> </span><span class="p">(</span><span class="nx">FK</span><span class="p">),</span><span class="w"> </span><span class="nx">timestamp</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">cpu_usage</span><span class="p">,</span><span class="w"> </span><span class="nx">memory_percent</span><span class="p">,</span><span class="w"> </span><span class="nx">disk_usage</span><span class="p">,</span><span class="w"> </span><span class="nx">network_stats</span>
+
+<span class="mi">4</span><span class="p">.</span><span class="w"> </span><span class="nx">alerts</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">system_id</span><span class="w"> </span><span class="p">(</span><span class="nx">FK</span><span class="p">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">alert_type</span><span class="p">,</span><span class="w"> </span><span class="nx">severity</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">is_resolved</span>
+
+<span class="mi">5</span><span class="p">.</span><span class="w"> </span><span class="nx">tickets</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">system_id</span><span class="w"> </span><span class="p">(</span><span class="nx">FK</span><span class="p">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="p">,</span><span class="w"> </span><span class="nx">resolved_at</span>
+
+<span class="mi">6</span><span class="p">.</span><span class="w"> </span><span class="nx">alert_settings</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">system_id</span><span class="w"> </span><span class="p">(</span><span class="nx">FK</span><span class="p">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">cpu_threshold</span><span class="p">,</span><span class="w"> </span><span class="nx">memory_threshold</span><span class="p">,</span><span class="w"> </span><span class="nx">disk_threshold</span>
+</code></pre></div>
+
+<hr />
+<h2 id="key-file-locations">📁 Key File Locations</h2>
+<h3 id="backend-fastapi">Backend (FastAPI)</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">backend</span>/
+├── <span class="n">app</span>/
+│   ├── <span class="n">api</span>/
+│   │   ├── <span class="nb">auth</span>.<span class="n">py</span>              ← <span class="n">Authentication</span> <span class="n">endpoints</span>
+│   │   └── <span class="n">endpoints</span>.<span class="n">py</span>         ← <span class="n">Main</span> <span class="n">API</span> <span class="n">endpoints</span>
+│   ├── <span class="n">core</span>/
+│   │   ├── <span class="n">security</span>.<span class="n">py</span>          ← <span class="n">Password</span> <span class="n">hashing</span>
+│   │   ├── <span class="n">alerts</span>.<span class="n">py</span>            ← <span class="n">Alert</span> <span class="n">generation</span>
+│   │   └── <span class="n">discovery</span>.<span class="n">py</span>         ← <span class="n">System</span> <span class="n">discovery</span>
+│   ├── <span class="n">db</span>/
+│   │   └── <span class="n">database</span>.<span class="n">py</span>          ← <span class="n">Database</span> <span class="n">connection</span>
+│   ├── <span class="n">models</span>/
+│   │   └── <span class="n">models</span>.<span class="n">py</span>            ← <span class="n">SQLAlchemy</span> <span class="n">models</span> (<span class="mi">6</span> <span class="n">tables</span>)
+│   └── <span class="n">schemas</span>/
+│       └── <span class="n">schemas</span>.<span class="n">py</span>           ← <span class="n">Pydantic</span> <span class="n">validation</span>
+└── <span class="n">resource_monitor</span>.<span class="n">db</span>          ← <span class="n">SQLite</span> <span class="n">database</span>
+</code></pre></div>
+
+<h3 id="frontend-react">Frontend (React)</h3>
+<div class="codehilite"><pre><span></span><code>dashboard/
+└── src/
+    ├── pages/
+    │   ├── Login.jsx            ← Login form
+    │   ├── Dashboard.jsx        ← Main dashboard
+    │   └── SystemDetail.jsx     ← System details
+    └── services/
+        └── api.js               ← API integration
+</code></pre></div>
+
+<h3 id="agent-python">Agent (Python)</h3>
+<div class="codehilite"><pre><span></span><code>agent/
+├── main.py                      ← Main agent logic
+└── gui.py                       ← System tray interface
+</code></pre></div>
+
+<h3 id="build-system">Build System</h3>
+<div class="codehilite"><pre><span></span><code>setup_lab.py                     ← Automated IP detection &amp; build
+build_lab_agent.bat              ← One-click agent build
+</code></pre></div>
+
+<hr />
+<h2 id="validation-examples">🚀 Validation Examples</h2>
+<h3 id="frontend-validation-react">Frontend Validation (React)</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Email format validation</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">validateEmail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sr">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// Required field validation</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">email</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setError</span><span class="p">(</span><span class="s2">&quot;All fields are required&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="backend-validation-pydantic">Backend Validation (Pydantic)</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">UserCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Must be string</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Must be string</span>
+
+<span class="k">class</span> <span class="nc">MetricCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">cpu_usage</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># Must be float (0-100)</span>
+    <span class="n">memory_percent</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># Auto-validated</span>
+    <span class="n">process_count</span><span class="p">:</span> <span class="nb">int</span>  <span class="c1"># Must be integer</span>
+</code></pre></div>
+
+<h3 id="database-validation-sqlalchemy">Database Validation (SQLAlchemy)</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># ↑ Database enforces uniqueness and NOT NULL</span>
+</code></pre></div>
+
+<hr />
+<h2 id="verification-scripts">🔧 Verification Scripts</h2>
+<p>Run these scripts to verify the implementation:</p>
+<h3 id="view-users">View Users</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>inspect_db.py
+</code></pre></div>
+
+<h3 id="detailed-user-data">Detailed User Data</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>view_all_user_data.py
+</code></pre></div>
+
+<h3 id="open-database-gui">Open Database GUI</h3>
+<div class="codehilite"><pre><span></span><code>open_database.bat
+</code></pre></div>
+
+<h3 id="extract-pdf-documentation">Extract PDF Documentation</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>read_pdf.py
+</code></pre></div>
+
+<hr />
+<h2 id="innovative-features">💡 Innovative Features</h2>
+<h3 id="1-automated-ip-detection">1. Automated IP Detection</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># setup_lab.py</span>
+<span class="k">def</span> <span class="nf">get_local_ip</span><span class="p">():</span>
+    <span class="c1"># Automatically detects server IP</span>
+    <span class="c1"># Embeds it into agent during build</span>
+    <span class="c1"># Zero manual configuration needed!</span>
+</code></pre></div>
+
+<h3 id="2-foreign-key-cascade">2. Foreign Key Cascade</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># When a system is deleted, all related data is automatically removed</span>
+<span class="k">class</span> <span class="nc">Metric</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">system_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;systems.id&quot;</span><span class="p">))</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;System&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;metrics&quot;</span><span class="p">,</span> 
+                         <span class="n">cascade</span><span class="o">=</span><span class="s2">&quot;all, delete-orphan&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="3-real-time-monitoring">3. Real-Time Monitoring</h3>
+<ul>
+<li>Agent sends metrics every N seconds</li>
+<li>Dashboard polls for updates</li>
+<li>Automatic alert generation</li>
+<li>System discovery</li>
+</ul>
+<hr />
+<h2 id="comparison-with-pharmpal-project">📊 Comparison with PharmPal Project</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>PharmPal</th>
+<th>Resource Monitor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Flutter</td>
+<td>React.js</td>
+</tr>
+<tr>
+<td><strong>Backend</strong></td>
+<td>FastAPI</td>
+<td>FastAPI</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>PostgreSQL</td>
+<td>SQLite</td>
+</tr>
+<tr>
+<td><strong>Auth</strong></td>
+<td>JWT + Argon2</td>
+<td>JWT + PBKDF2</td>
+</tr>
+<tr>
+<td><strong>Innovation</strong></td>
+<td>AI Chatbot</td>
+<td>Auto-deployment</td>
+</tr>
+<tr>
+<td><strong>Multi-user</strong></td>
+<td>Yes (per-user inventory)</td>
+<td>Yes (shared monitoring)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="documentation-files">📖 Documentation Files</h2>
+<ol>
+<li><strong>Component_8_Resource_Monitoring_System.md</strong> (This report)</li>
+<li>Complete technical documentation</li>
+<li>Security proof</li>
+<li>Validation examples</li>
+<li>
+<p>Database schema</p>
+</li>
+<li>
+<p><strong>HOW_TO_VIEW_USER_DATA.md</strong></p>
+</li>
+<li>Guide for accessing user data</li>
+<li>Multiple access methods</li>
+<li>
+<p>Quick reference</p>
+</li>
+<li>
+<p><strong>security_proof.md</strong> (Existing)</p>
+</li>
+<li>Detailed security analysis</li>
+<li>Vulnerability assessment</li>
+</ol>
+<hr />
+<h2 id="checklist">✅ Checklist</h2>
+<ul>
+<li>[x] Multi-user authentication (JWT)</li>
+<li>[x] Password hashing (PBKDF2-SHA256)</li>
+<li>[x] Database with foreign keys</li>
+<li>[x] Frontend validation</li>
+<li>[x] Backend validation (Pydantic)</li>
+<li>[x] Database constraints</li>
+<li>[x] SQL injection prevention (ORM)</li>
+<li>[x] XSS prevention (React escaping)</li>
+<li>[x] Automated deployment</li>
+<li>[x] Real-time monitoring</li>
+<li>[x] Alert system</li>
+<li>[x] Comprehensive documentation</li>
+</ul>
+<hr />
+<p><strong>Report Created:</strong> December 27, 2025<br />
+<strong>Project:</strong> Resource Monitoring and Management System<br />
+<strong>Repository:</strong> MadeNavaneeth/Resource-Monitoring-and-Management-System</p>
+<hr />
+<p><strong>For complete details, see:</strong> <code>Component_8_Resource_Monitoring_System.md</code></p>
+    </body>
+    </html>
+    

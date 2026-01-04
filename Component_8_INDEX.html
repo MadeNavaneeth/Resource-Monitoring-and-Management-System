@@ -1,0 +1,446 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Resource Monitoring System - Component 8</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #3498db;
+                padding-bottom: 10px;
+                margin-top: 30px;
+            }
+            
+            h2 {
+                color: #34495e;
+                border-bottom: 2px solid #95a5a6;
+                padding-bottom: 8px;
+                margin-top: 25px;
+            }
+            
+            h3 {
+                color: #555;
+                margin-top: 20px;
+            }
+            
+            code {
+                background-color: #f4f4f4;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 0.9em;
+                color: #c7254e;
+            }
+            
+            pre {
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                border-left: 4px solid #3498db;
+                padding: 15px;
+                border-radius: 4px;
+                overflow-x: auto;
+            }
+            
+            pre code {
+                background-color: transparent;
+                padding: 0;
+                color: #333;
+            }
+            
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+            }
+            
+            th {
+                background-color: #3498db;
+                color: white;
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #2980b9;
+            }
+            
+            td {
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            
+            blockquote {
+                border-left: 4px solid #3498db;
+                padding-left: 20px;
+                margin-left: 0;
+                color: #555;
+                font-style: italic;
+            }
+            
+            hr {
+                border: none;
+                border-top: 2px solid #eee;
+                margin: 30px 0;
+            }
+            
+            @media print {
+                body {
+                    max-width: 100%;
+                }
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                }
+                pre, table {
+                    page-break-inside: avoid;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="component-8-documentation-index">📚 Component 8 Documentation Index</h1>
+<h2 id="resource-monitoring-and-management-system">Resource Monitoring and Management System</h2>
+<h3 id="design-security-and-validation-report">Design, Security, and Validation Report</h3>
+<hr />
+<h2 id="documentation-files">📖 Documentation Files</h2>
+<p>This folder contains comprehensive documentation following the structure of the Pharmacy Inventory Management System (PharmPal) Component 8 report.</p>
+<h3 id="1-component_8_resource_monitoring_systemmd-main-report">1. <strong>Component_8_Resource_Monitoring_System.md</strong> ⭐ MAIN REPORT</h3>
+<ul>
+<li><strong>Purpose</strong>: Complete technical documentation following Component 8 format</li>
+<li><strong>Length</strong>: ~500 lines</li>
+<li><strong>Sections</strong>:<ul>
+<li>A. Design of Forms &amp; Frontend Screenshots</li>
+<li>B. Security and Validation Proof</li>
+<li>C. Innovative Experiment (Automated Agent Deployment)</li>
+<li>D. Database Structure and Verification</li>
+<li>E. System Architecture Overview</li>
+</ul>
+</li>
+<li><strong>Use</strong>: Submit as Component 8 report</li>
+</ul>
+<h3 id="2-component_8_quick_referencemd">2. <strong>Component_8_Quick_Reference.md</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Quick reference guide with tables and summaries</li>
+<li><strong>Length</strong>: Condensed version</li>
+<li><strong>Sections</strong>:<ul>
+<li>Security implementation summary</li>
+<li>Database tables overview</li>
+<li>Key file locations</li>
+<li>Validation examples</li>
+<li>Comparison with PharmPal</li>
+</ul>
+</li>
+<li><strong>Use</strong>: Quick lookup during presentation</li>
+</ul>
+<h3 id="3-how_to_view_user_datamd">3. <strong>HOW_TO_VIEW_USER_DATA.md</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Step-by-step guide for accessing user data</li>
+<li><strong>Sections</strong>:<ul>
+<li>DB Browser for SQLite method</li>
+<li>Python scripts method</li>
+<li>Web dashboard method</li>
+<li>Direct SQL method</li>
+</ul>
+</li>
+<li><strong>Use</strong>: Practical reference for data access</li>
+</ul>
+<h3 id="4-security_proofmd-existing">4. <strong>security_proof.md</strong> (Existing)</h3>
+<ul>
+<li><strong>Purpose</strong>: Detailed security analysis</li>
+<li><strong>Sections</strong>:<ul>
+<li>Authentication mechanisms</li>
+<li>Vulnerability assessment</li>
+<li>Security best practices</li>
+</ul>
+</li>
+<li><strong>Use</strong>: Security documentation reference</li>
+</ul>
+<h3 id="5-readmemd-main-project-readme">5. <strong>README.md</strong> (Main project README)</h3>
+<ul>
+<li><strong>Purpose</strong>: Project overview</li>
+<li><strong>Original</strong>: Project introduction and setup</li>
+<li><strong>Use</strong>: General project documentation</li>
+</ul>
+<hr />
+<h2 id="what-was-updated-based-on-component-8pdf">🔍 What Was Updated Based on Component 8.pdf</h2>
+<h3 id="from-pharmpal-document">From PharmPal Document:</h3>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>PharmPal</th>
+<th>Resource Monitor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Flutter with login, inventory, detail, OCR forms</td>
+<td>React with login, dashboard, system detail, alert config</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>JWT + Argon2 + Multi-tenancy</td>
+<td>JWT + PBKDF2 + Multi-user</td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>Pydantic + Flutter validation</td>
+<td>Pydantic + React validation</td>
+</tr>
+<tr>
+<td><strong>Innovation</strong></td>
+<td>AI chatbot with tool use</td>
+<td>Automated agent deployment</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>PostgreSQL with user_id filtering</td>
+<td>SQLite with foreign keys</td>
+</tr>
+</tbody>
+</table>
+<h3 id="adapted-subheadings">Adapted Subheadings:</h3>
+<p>✓ <strong>A. Design of Forms</strong> - Mapped 4 forms from PharmPal to our 4 screens<br />
+✓ <strong>B. Security and Validation Proof</strong> - Documented our JWT auth &amp; password hashing<br />
+✓ <strong>C. Innovative Experiment</strong> - Changed from AI chatbot to automated deployment<br />
+✓ Added <strong>D. Database Structure</strong> - Our 6 tables with verification<br />
+✓ Added <strong>E. System Architecture</strong> - Complete component overview  </p>
+<hr />
+<h2 id="key-differences-from-pharmpal">🎯 Key Differences from PharmPal</h2>
+<h3 id="pharmpal-focus">PharmPal Focus:</h3>
+<ul>
+<li>Mobile app (Flutter)</li>
+<li>Per-user inventory isolation</li>
+<li>AI-powered chatbot with database tool use</li>
+<li>OCR and barcode scanning</li>
+<li>Pharmacy-specific features</li>
+</ul>
+<h3 id="our-resource-monitor-focus">Our Resource Monitor Focus:</h3>
+<ul>
+<li>Web dashboard (React)</li>
+<li>Shared system monitoring</li>
+<li>Automated zero-config agent deployment</li>
+<li>Real-time metrics collection</li>
+<li>IT management features</li>
+</ul>
+<h3 id="similar-security-principles">Similar Security Principles:</h3>
+<ul>
+<li>Both use JWT authentication</li>
+<li>Both use strong password hashing</li>
+<li>Both implement backend validation with Pydantic</li>
+<li>Both use FastAPI backend</li>
+<li>Both prevent SQL injection with ORM</li>
+</ul>
+<hr />
+<h2 id="database-verification">💾 Database Verification</h2>
+<h3 id="quick-commands">Quick Commands:</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># View users in database</span>
+python<span class="w"> </span>inspect_db.py
+
+<span class="c1"># Detailed user information</span>
+python<span class="w"> </span>view_all_user_data.py
+
+<span class="c1"># Open database in GUI</span>
+open_database.bat
+
+<span class="c1"># View all tables</span>
+python<span class="w"> </span>inspect_s_admins.py
+</code></pre></div>
+
+<h3 id="current-database-status">Current Database Status:</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Database</span><span class="o">:</span><span class="w"> </span><span class="n">backend</span><span class="o">/</span><span class="n">resource_monitor</span><span class="o">.</span><span class="na">db</span>
+<span class="n">Tables</span><span class="o">:</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">(</span><span class="n">users</span><span class="o">,</span><span class="w"> </span><span class="n">systems</span><span class="o">,</span><span class="w"> </span><span class="n">metrics</span><span class="o">,</span><span class="w"> </span><span class="n">alerts</span><span class="o">,</span><span class="w"> </span><span class="n">tickets</span><span class="o">,</span><span class="w"> </span><span class="n">alert_settings</span><span class="o">)</span>
+<span class="n">Users</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">(</span><span class="n">nthy2355</span><span class="err">@</span><span class="n">gmail</span><span class="o">.</span><span class="na">com</span><span class="o">,</span><span class="w"> </span><span class="n">Admin1</span><span class="err">@</span><span class="n">gmail</span><span class="o">.</span><span class="na">com</span><span class="o">)</span>
+<span class="n">Password</span><span class="w"> </span><span class="n">Hashing</span><span class="o">:</span><span class="w"> </span><span class="n">PBKDF2</span><span class="o">-</span><span class="n">SHA256</span>
+<span class="n">Status</span><span class="o">:</span><span class="w"> </span><span class="err">✓</span><span class="w"> </span><span class="n">Fully</span><span class="w"> </span><span class="n">functional</span>
+</code></pre></div>
+
+<hr />
+<h2 id="project-file-structure">📂 Project File Structure</h2>
+<div class="codehilite"><pre><span></span><code>Resource-Monitoring-and-Management-System/
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── auth.py              ← JWT authentication
+│   │   │   └── endpoints.py         ← Main API
+│   │   ├── core/
+│   │   │   ├── security.py          ← Password hashing
+│   │   │   ├── alerts.py            ← Alert system
+│   │   │   └── discovery.py         ← Auto-discovery
+│   │   ├── models/
+│   │   │   └── models.py            ← 6 database tables
+│   │   └── schemas/
+│   │       └── schemas.py           ← Pydantic validation
+│   └── resource_monitor.db          ← SQLite database
+├── dashboard/
+│   └── src/
+│       ├── pages/
+│       │   ├── Login.jsx            ← Login form
+│       │   ├── Dashboard.jsx        ← Main dashboard
+│       │   └── SystemDetail.jsx     ← System details
+│       └── services/
+│           └── api.js               ← API calls
+├── agent/
+│   ├── main.py                      ← Agent logic
+│   └── gui.py                       ← System tray
+├── setup_lab.py                     ← Auto IP detection
+├── Component_8_Resource_Monitoring_System.md  ← MAIN REPORT
+├── Component_8_Quick_Reference.md   ← Quick guide
+├── HOW_TO_VIEW_USER_DATA.md        ← Data access guide
+└── security_proof.md               ← Security details
+</code></pre></div>
+
+<hr />
+<h2 id="quick-start-for-review">🚀 Quick Start for Review</h2>
+<h3 id="1-read-main-report">1. Read Main Report</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Open in your editor</span>
+Component_8_Resource_Monitoring_System.md
+</code></pre></div>
+
+<h3 id="2-verify-database">2. Verify Database</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>view_all_user_data.py
+</code></pre></div>
+
+<h3 id="3-view-in-db-browser">3. View in DB Browser</h3>
+<div class="codehilite"><pre><span></span><code>open_database.bat
+</code></pre></div>
+
+<h3 id="4-check-security-implementation">4. Check Security Implementation</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># View authentication code</span>
+code<span class="w"> </span>backend/app/api/auth.py
+
+<span class="c1"># View password hashing</span>
+code<span class="w"> </span>backend/app/core/security.py
+
+<span class="c1"># View database models</span>
+code<span class="w"> </span>backend/app/models/models.py
+</code></pre></div>
+
+<hr />
+<h2 id="component-8-requirements-checklist">✅ Component 8 Requirements Checklist</h2>
+<p>Based on the PharmPal document structure:</p>
+<ul>
+<li>[x] <strong>Design of Forms</strong> - 4 key interfaces documented</li>
+<li>[x] <strong>Security Proof</strong></li>
+<li>[x] Authentication (JWT)</li>
+<li>[x] Password hashing</li>
+<li>[x] Database constraints</li>
+<li>[x] API protection</li>
+<li>[x] <strong>Validation Proof</strong></li>
+<li>[x] Frontend validation</li>
+<li>[x] Backend validation (Pydantic)</li>
+<li>[x] Database validation</li>
+<li>[x] <strong>Innovative Experiment</strong></li>
+<li>[x] Description of innovation</li>
+<li>[x] Implementation details</li>
+<li>[x] Architecture benefits</li>
+<li>[x] <strong>Code Examples</strong> - Included throughout</li>
+<li>[x] <strong>Database Verification</strong> - Scripts provided</li>
+<li>[x] <strong>Screenshots</strong> - Described (can add real screenshots)</li>
+</ul>
+<hr />
+<h2 id="notes-for-submission">📝 Notes for Submission</h2>
+<h3 id="what-to-submit">What to Submit:</h3>
+<ol>
+<li><strong>Component_8_Resource_Monitoring_System.md</strong> (Main report)</li>
+<li><strong>Component_8_Quick_Reference.md</strong> (Optional - for presentation)</li>
+<li><strong>Screenshots</strong> (if required - can be taken from running application)</li>
+</ol>
+<h3 id="supporting-files-for-verification">Supporting Files (for verification):</h3>
+<ul>
+<li><code>inspect_db.py</code> - Shows user table</li>
+<li><code>view_all_user_data.py</code> - Detailed user data</li>
+<li><code>open_database.bat</code> - Opens DB Browser</li>
+<li><code>component8_extracted.txt</code> - Original PharmPal document for reference</li>
+</ul>
+<hr />
+<h2 id="related-documentation">🔗 Related Documentation</h2>
+<ul>
+<li><strong>Main Project README</strong>: <code>README.md</code></li>
+<li><strong>Security Analysis</strong>: <code>security_proof.md</code></li>
+<li><strong>User Data Guide</strong>: <code>HOW_TO_VIEW_USER_DATA.md</code></li>
+<li><strong>Original Component 8</strong>: <code>Component 8.pdf</code> (Pharmacy system - for reference)</li>
+</ul>
+<hr />
+<h2 id="team-information">👥 Team Information</h2>
+<p>Update these fields in the main report:</p>
+<div class="codehilite"><pre><span></span><code>Submitted by
+[Your Name]
+[Roll Number]
+</code></pre></div>
+
+<p>Current template uses placeholders - replace with actual information.</p>
+<hr />
+<h2 id="questions-support">📞 Questions &amp; Support</h2>
+<p>For questions about this documentation:</p>
+<ol>
+<li><strong>Database access</strong>: See <code>HOW_TO_VIEW_USER_DATA.md</code></li>
+<li><strong>Security details</strong>: See <code>security_proof.md</code></li>
+<li><strong>Technical implementation</strong>: See <code>Component_8_Resource_Monitoring_System.md</code></li>
+</ol>
+<hr />
+<p><strong>Last Updated</strong>: December 27, 2025<br />
+<strong>Project</strong>: Resource Monitoring and Management System<br />
+<strong>Based on</strong>: Component 8.pdf (Pharmacy Inventory Management System)<br />
+<strong>Status</strong>: ✓ Ready for submission</p>
+<hr />
+<h2 id="document-statistics">📊 Document Statistics</h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Lines</th>
+<th>Purpose</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component_8_Resource_Monitoring_System.md</td>
+<td>~500</td>
+<td>Main report</td>
+<td>✓ Complete</td>
+</tr>
+<tr>
+<td>Component_8_Quick_Reference.md</td>
+<td>~200</td>
+<td>Quick guide</td>
+<td>✓ Complete</td>
+</tr>
+<tr>
+<td>HOW_TO_VIEW_USER_DATA.md</td>
+<td>~150</td>
+<td>Data access</td>
+<td>✓ Complete</td>
+</tr>
+<tr>
+<td>security_proof.md</td>
+<td>~100</td>
+<td>Security</td>
+<td>✓ Existing</td>
+</tr>
+<tr>
+<td>INDEX.md (this file)</td>
+<td>~250</td>
+<td>Navigation</td>
+<td>✓ Complete</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total documentation</strong>: ~1,200 lines covering all aspects of design, security, and validation.</p>
+<hr />
+<p><strong>This completes the Component 8 documentation for your Resource Monitoring and Management System!</strong> 🎉</p>
+    </body>
+    </html>
+    

@@ -30,32 +30,35 @@ def get_ip_addresses():
     return list(set(ips))
 
 def update_agent_url(ip):
-    """Updates the API_URL in agent/main.py."""
-    file_path = os.path.join("agent", "main.py")
+    """Updates the API_URL in agent/main.py and agent/gui.py."""
     new_url = f"http://{ip}:8000/api/v1"
+    files_to_update = [
+        os.path.join("agent", "main.py"),
+        os.path.join("agent", "gui.py")
+    ]
     
-    print(f"Reading {file_path}...")
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
+    success_count = 0
+    pattern = r'SERVER_URL\s*=\s*os\.getenv\("SERVER_URL",\s*["\'].*?["\']\)'
+    replacement = f'SERVER_URL = os.getenv("SERVER_URL", "{new_url}")'
+
+    for file_path in files_to_update:
+        print(f"Reading {file_path}...")
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
             
-        # Regex replace SERVER_URL default value
-        # Matches: SERVER_URL = os.getenv("SERVER_URL", "...")
-        pattern = r'SERVER_URL\s*=\s*os\.getenv\("SERVER_URL",\s*["\'].*?["\']\)'
-        replacement = f'SERVER_URL = os.getenv("SERVER_URL", "{new_url}")'
-        
-        if re.search(pattern, content):
-            new_content = re.sub(pattern, replacement, content)
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(new_content)
-            print(f"✅ Updated Agent Code: SERVER_URL set to {new_url}")
-            return True
-        else:
-            print("❌ Error: Could not find SERVER_URL definition in agent/main.py")
-            return False
-    except FileNotFoundError:
-        print(f"❌ Error: File not found: {file_path}")
-        return False
+            if re.search(pattern, content):
+                new_content = re.sub(pattern, replacement, content)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(new_content)
+                print(f"✅ Updated {file_path}: SERVER_URL set to {new_url}")
+                success_count += 1
+            else:
+                print(f"❌ Error: Could not find SERVER_URL definition in {file_path}")
+        except FileNotFoundError:
+            print(f"❌ Error: File not found: {file_path}")
+            
+    return success_count > 0
 
 def update_frontend_url(ip):
     """Updates the API_URL in dashboard/src/services/api.js."""

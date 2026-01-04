@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Database Population Results</title>
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        
+        .query-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+        }
+        
+        .output-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #2980b9;
+        }
+        
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f8ff;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .summary h2 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .summary table th {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .row-count {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Database Population Results - Resource Monitoring System</h1>
+    <p><strong>Database:</strong> backend/resource_monitor.db</p>
+    <p><strong>Generated:</strong> 2025-12-28 13:39:38</p>
+
+    <div class="section">
+        <h2>1. 👤 USERS Table</h2>
+        
+        <div class="query-box">
+            <strong>INSERT Query:</strong><br>
+            INSERT INTO users (email, hashed_password, is_active) VALUES<br>
+            ('admin@resourcemonitor.com', '$hash1', 1),<br>
+            ('user@example.com', '$hash2', 1);
+        </div>
+        
+        <div class="output-box">
+            ✅ Query OK, X rows affected
+        </div>
+        
+        <div class="query-box">
+            <strong>Verification Query:</strong><br>
+            SELECT id, email, is_active, created_at FROM users;
+        </div>
+<table><thead><tr><th>id</th><th>email</th><th>is_active</th><th>created_at</th></tr></thead><tbody><tr><td>1</td><td>nthy2355@gmail.com</td><td>1</td><td>2025-12-25 13:16:06</td></tr><tr><td>2</td><td>Admin1@gmail.com</td><td>1</td><td>2025-12-27 08:39:59</td></tr><tr><td>3</td><td>Admin2@gmail.com</td><td>1</td><td>2025-12-27 09:11:11</td></tr><tr><td>4</td><td>Admin3@gmail.com</td><td>1</td><td>2025-12-27 09:11:32</td></tr></tbody></table><div class="row-count">4 row(s) returned</div></div>
+    <div class="section">
+        <h2>2. 💻 SYSTEMS Table</h2>
+        
+        <div class="query-box">
+            <strong>INSERT Query:</strong><br>
+            INSERT INTO systems (hostname, ip_address, mac_address, os_info,<br>
+            windows_edition, cpu_name, cpu_cores, total_memory_gb, ...)<br>
+            VALUES ('DESKTOP-ABC123','192.168.1.100','00:1A:2B:3C:4D:5E', ...);
+        </div>
+        
+        <div class="output-box">
+            ✅ Query OK, X rows affected
+        </div>
+        
+        <div class="query-box">
+            <strong>Verification Query:</strong><br>
+            SELECT id, hostname, ip_address, os_info, cpu_name, total_memory_gb FROM systems;
+        </div>
+<table><thead><tr><th>id</th><th>hostname</th><th>ip_address</th><th>os_info</th><th>cpu_name</th><th>total_memory_gb</th></tr></thead><tbody><tr><td>1</td><td>LAPTOP-Q5IS18KS</td><td>10.137.37.122</td><td>Windows 11</td><td>Intel64 Family 6 Model 154 Stepping 3, GenuineIntel</td><td>15.7</td></tr><tr><td>2</td><td>Navaneeth</td><td>10.137.37.24</td><td>Windows 11</td><td>Intel64 Family 6 Model 154 Stepping 3, GenuineIntel</td><td>31.7</td></tr></tbody></table><div class="row-count">2 row(s) returned</div></div>
+    <div class="section">
+        <h2>3. 🚨 ALERTS Table</h2>
+        
+        <div class="query-box">
+            <strong>INSERT Query:</strong><br>
+            INSERT INTO alerts (system_id, alert_type, severity, message, is_resolved)<br>
+            VALUES (1, 'CPU', 'WARNING', 'CPU usage exceeded 80%', 0);
+        </div>
+        
+        <div class="output-box">
+            ✅ Query OK, X rows affected
+        </div>
+        
+        <div class="query-box">
+            <strong>Verification Query:</strong><br>
+            SELECT id, system_id, alert_type, severity, message, is_resolved FROM alerts;
+        </div>
+<table><thead><tr><th>id</th><th>system_id</th><th>alert_type</th><th>severity</th><th>message</th><th>is_resolved</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>Disk</td><td>Critical</td><td>High Disk usage detected: 96.4% (Threshold: 90.0%)</td><td>0</td></tr><tr><td>2</td><td>1</td><td>Memory</td><td>Warning</td><td>High Memory usage detected: 73.30% (Threshold: 40.</td><td>0</td></tr><tr><td>3</td><td>2</td><td>Memory</td><td>Warning</td><td>High Memory usage detected: 81.63% (Threshold: 25.</td><td>0</td></tr><tr><td>4</td><td>2</td><td>Disk</td><td>Critical</td><td>High Disk usage detected: 59.8% (Threshold: 25.0%)</td><td>0</td></tr><tr><td>5</td><td>2</td><td>CPU</td><td>Warning</td><td>High CPU usage detected: 38.5% (Threshold: 25.0%)</td><td>0</td></tr></tbody></table><div class="row-count">5 row(s) returned</div></div>
+    <div class="section">
+        <h2>4. 📈 METRICS Table</h2>
+        
+        <div class="query-box">
+            <strong>INSERT Query:</strong><br>
+            INSERT INTO metrics (system_id, cpu_usage, memory_percent, disk_usage,<br>
+            process_count, uptime_seconds)<br>
+            VALUES (1, 45.2, 62.5, 55.0, 156, 86400);
+        </div>
+        
+        <div class="output-box">
+            ✅ Query OK, X rows affected
+        </div>
+        
+        <div class="query-box">
+            <strong>Verification Query:</strong><br>
+            SELECT id, system_id, cpu_usage, memory_percent, disk_usage, process_count, uptime_human FROM metrics;
+        </div>
+<table><thead><tr><th>id</th><th>system_id</th><th>cpu_usage</th><th>memory_percent</th><th>disk_usage</th><th>process_count</th><th>uptime_human</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0.0</td><td>63.7</td><td>94.9</td><td>326</td><td><em>NULL</em></td></tr><tr><td>2</td><td>1</td><td>6.9</td><td>63.9</td><td>94.9</td><td>326</td><td><em>NULL</em></td></tr><tr><td>3</td><td>1</td><td>8.5</td><td>64.1</td><td>94.9</td><td>327</td><td><em>NULL</em></td></tr><tr><td>4</td><td>1</td><td>7.9</td><td>64.7</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>5</td><td>1</td><td>4.8</td><td>64.8</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>6</td><td>1</td><td>6.1</td><td>64.8</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>7</td><td>1</td><td>4.8</td><td>65.0</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>8</td><td>1</td><td>3.4</td><td>65.0</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>9</td><td>1</td><td>4.7</td><td>64.9</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>10</td><td>1</td><td>5.6</td><td>64.9</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>11</td><td>1</td><td>5.2</td><td>64.7</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>12</td><td>1</td><td>5.6</td><td>64.7</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>13</td><td>1</td><td>4.5</td><td>64.5</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>14</td><td>1</td><td>4.5</td><td>64.7</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>15</td><td>1</td><td>5.8</td><td>64.6</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>16</td><td>1</td><td>5.1</td><td>64.7</td><td>94.9</td><td>331</td><td><em>NULL</em></td></tr><tr><td>17</td><td>1</td><td>5.2</td><td>64.6</td><td>94.9</td><td>330</td><td><em>NULL</em></td></tr><tr><td>18</td><td>1</td><td>4.9</td><td>64.3</td><td>94.9</td><td>328</td><td><em>NULL</em></td></tr><tr><td>19</td><td>1</td><td>3.8</td><td>64.3</td><td>94.9</td><td>328</td><td><em>NULL</em></td></tr><tr><td>20</td><td>1</td><td>5.1</td><td>64.3</td><td>94.9</td><td>328</td><td><em>NULL</em></td></tr></tbody></table><div class="row-count">20 row(s) returned</div></div>
+    <div class="section">
+        <h2>5. 🎫 TICKETS Table</h2>
+        
+        <div class="query-box">
+            <strong>INSERT Query:</strong><br>
+            INSERT INTO tickets (system_id, message, status, resolved_at)<br>
+            VALUES (1, 'System running slow - needs investigation', 'OPEN', NULL);
+        </div>
+        
+        <div class="output-box">
+            ✅ Query OK, X rows affected
+        </div>
+        
+        <div class="query-box">
+            <strong>Verification Query:</strong><br>
+            SELECT id, system_id, message, status, created_at FROM tickets;
+        </div>
+<table><thead><tr><th>id</th><th>system_id</th><th>message</th><th>status</th><th>created_at</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>Laptop is slow</td><td>OPEN</td><td>2025-12-25 13:30:41</td></tr><tr><td>2</td><td>2</td><td>SLOW INTERNET</td><td>OPEN</td><td>2025-12-25 13:42:43</td></tr></tbody></table><div class="row-count">2 row(s) returned</div></div>
+    <div class="section">
+        <h2>6. ⚙️ ALERT_SETTINGS Table</h2>
+        
+        <div class="query-box">
+            <strong>INSERT Query:</strong><br>
+            INSERT INTO alert_settings (system_id, cpu_threshold, memory_threshold, disk_threshold)<br>
+            VALUES (1, 85.0, 90.0, 85.0);
+        </div>
+        
+        <div class="output-box">
+            ✅ Query OK, X rows affected
+        </div>
+        
+        <div class="query-box">
+            <strong>Verification Query:</strong><br>
+            SELECT id, system_id, cpu_threshold, memory_threshold, disk_threshold FROM alert_settings;
+        </div>
+<table><thead><tr><th>id</th><th>system_id</th><th>cpu_threshold</th><th>memory_threshold</th><th>disk_threshold</th></tr></thead><tbody><tr><td>1</td><td><em>NULL</em></td><td>25.0</td><td>25.0</td><td>25.0</td></tr><tr><td>2</td><td>1</td><td>40.0</td><td>40.0</td><td>40.0</td></tr></tbody></table><div class="row-count">2 row(s) returned</div></div>
+    <div class="summary">
+        <h2>📊 DATABASE SUMMARY</h2>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px;">
+            <strong>Query:</strong><br>
+            SELECT table_name, COUNT(*) as row_count FROM ...
+        </div>
+        <br>
+<table><thead><tr><th>table_name</th><th>row_count</th></tr></thead><tbody><tr><td>users</td><td>4</td></tr><tr><td>systems</td><td>2</td></tr><tr><td>alerts</td><td>5</td></tr><tr><td>metrics</td><td>2207</td></tr><tr><td>tickets</td><td>2</td></tr><tr><td>alert_settings</td><td>2</td></tr></tbody></table></div>
+    <div class="section" style="text-align: center;">
+        <h2>✅ All Queries Executed Successfully!</h2>
+        <p>You can take screenshots directly from this page or print to PDF using Ctrl+P</p>
+    </div>
+    
+</body>
+</html>

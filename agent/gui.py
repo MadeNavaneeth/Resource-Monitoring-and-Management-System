@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 # Configuration (Target for setup_lab.py automation)
-SERVER_URL = os.getenv("SERVER_URL", "http://127.0.0.1:8000/api/v1")
+SERVER_URL = os.getenv("SERVER_URL", "http://192.168.62.122:8000/api/v1")
 
 class RoundedButton(tk.Canvas):
     def __init__(self, parent, width, height, corner_radius, padding=0, color="#ff6600", fg="#000000", command=None, text="", state="normal"):
@@ -420,10 +420,10 @@ class ModernAgentGUI:
             self.system_id = system_id # Cache for UI usage
 
             while not self.stop_event.is_set():
-                metrics = collector.get_metrics()
-                metrics["system_id"] = system_id
-                
                 try:
+                    metrics = collector.get_metrics()
+                    metrics["system_id"] = system_id
+                    
                     resp = session.post(f"{base_url}/metrics", json=metrics)
                     if resp.status_code == 200:
                         self.metrics_count += 1
@@ -439,8 +439,8 @@ class ModernAgentGUI:
                          if reg_2.status_code == 200:
                              system_id = reg_2.json()['id']
                 except Exception as e:
-                    logger.error(f"Metrics send error: {e}")
-
+                    logger.error(f"Metrics collection/send error: {e}")
+                
                 time.sleep(POLL_INTERVAL)
 
         except Exception as e:

@@ -1,0 +1,230 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Database Schema - Resource Monitoring System</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #3498db;
+                padding-bottom: 10px;
+                margin-top: 30px;
+            }
+            
+            h2 {
+                color: #34495e;
+                border-bottom: 2px solid #95a5a6;
+                padding-bottom: 8px;
+                margin-top: 25px;
+            }
+            
+            h3 {
+                color: #555;
+                margin-top: 20px;
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-left: 4px solid #3498db;
+            }
+            
+            code {
+                background-color: #f4f4f4;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 0.9em;
+                color: #c7254e;
+            }
+            
+            pre {
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                border-left: 4px solid #3498db;
+                padding: 15px;
+                border-radius: 4px;
+                overflow-x: auto;
+            }
+            
+            pre code {
+                background-color: transparent;
+                padding: 0;
+                color: #333;
+            }
+            
+            ul {
+                margin: 10px 0;
+                padding-left: 30px;
+            }
+            
+            li {
+                margin: 5px 0;
+            }
+            
+            strong {
+                color: #2c3e50;
+            }
+            
+            hr {
+                border: none;
+                border-top: 2px solid #eee;
+                margin: 30px 0;
+            }
+            
+            @media print {
+                body {
+                    max-width: 100%;
+                }
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                }
+                pre, ul {
+                    page-break-inside: avoid;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="database-schema-resource-monitoring-and-management-system">Database Schema - Resource Monitoring and Management System</h1>
+<h2 id="overview">Overview</h2>
+<p>Our project database has been designed using normalization principles to ensure data integrity and reduce redundancy. It consists of six related tables that work together to provide comprehensive system monitoring and management capabilities.</p>
+<hr />
+<h2 id="tables">Tables</h2>
+<h3 id="1-users">1. <strong>users</strong></h3>
+<p><strong>Purpose:</strong> Manages administrator accounts and serves as the root entity for authentication.</p>
+<p><strong>Attributes:</strong>
+- <code>id</code> (PK) - Integer, primary key, auto-incremented
+- <code>email</code> - String, unique, indexed, not null
+- <code>hashed_password</code> - String, not null (securely hashed using bcrypt)
+- <code>is_active</code> - Boolean, default: True
+- <code>created_at</code> - DateTime with timezone, server default: current timestamp</p>
+<hr />
+<h3 id="2-systems">2. <strong>systems</strong></h3>
+<p><strong>Purpose:</strong> A central registry storing detailed information about each monitored system/device, preventing data duplication. This table represents the physical or virtual machines being monitored.</p>
+<p><strong>Attributes:</strong>
+- <code>id</code> (PK) - Integer, primary key, auto-incremented
+- <code>hostname</code> - String, unique, indexed, not null
+- <code>ip_address</code> - String, nullable
+- <code>mac_address</code> - String, nullable
+- <code>os_info</code> - String, nullable (operating system name and version)
+- <code>os_build</code> - String, nullable
+- <code>windows_edition</code> - String, nullable
+- <code>user_label</code> - String, nullable (custom label for identification)
+- <code>agent_version</code> - String, nullable
+- <code>cpu_name</code> - String, nullable
+- <code>cpu_cores</code> - Integer, nullable
+- <code>cpu_threads</code> - Integer, nullable
+- <code>architecture</code> - String, nullable (x64, x86, etc.)
+- <code>total_memory_gb</code> - Float, nullable
+- <code>total_disk_gb</code> - Float, nullable
+- <code>disk_model</code> - String, nullable
+- <code>gpu_name</code> - String, nullable
+- <code>manufacturer</code> - String, nullable (system manufacturer)
+- <code>model</code> - String, nullable (system model)
+- <code>serial_number</code> - String, nullable
+- <code>bios_version</code> - String, nullable
+- <code>username</code> - String, nullable (logged-in user)
+- <code>domain</code> - String, nullable
+- <code>timezone</code> - String, nullable
+- <code>network_adapter</code> - String, nullable
+- <code>battery_percent</code> - Float, nullable
+- <code>is_plugged_in</code> - Boolean, nullable
+- <code>python_version</code> - String, nullable
+- <code>is_active</code> - Boolean, default: True
+- <code>last_seen</code> - DateTime with timezone, nullable
+- <code>drivers</code> - JSON, nullable (list of installed drivers)
+- <code>created_at</code> - DateTime with timezone, server default: current timestamp</p>
+<p><strong>Relationships:</strong>
+- One-to-many with <code>alerts</code>, <code>metrics</code>, and <code>tickets</code> (cascade delete)</p>
+<hr />
+<h3 id="3-alerts">3. <strong>alerts</strong></h3>
+<p><strong>Purpose:</strong> Stores system-generated alerts based on threshold violations or critical events. Each alert is linked to a specific system and tracks its resolution status.</p>
+<p><strong>Attributes:</strong>
+- <code>id</code> (PK) - Integer, primary key, auto-incremented
+- <code>system_id</code> (FK) - Integer, foreign key to <code>systems.id</code>
+- <code>alert_type</code> - String, not null (e.g., "CPU", "MEMORY", "DISK")
+- <code>severity</code> - String, not null (e.g., "CRITICAL", "WARNING", "INFO")
+- <code>message</code> - String, not null (alert description)
+- <code>is_resolved</code> - Boolean, default: False
+- <code>created_at</code> - DateTime with timezone, server default: current timestamp</p>
+<p><strong>Relationships:</strong>
+- Many-to-one with <code>systems</code></p>
+<hr />
+<h3 id="4-metrics">4. <strong>metrics</strong></h3>
+<p><strong>Purpose:</strong> The central time-series data store. Each row represents a snapshot of system performance metrics at a specific timestamp, enabling trend analysis and historical tracking.</p>
+<p><strong>Attributes:</strong>
+- <code>id</code> (PK) - Integer, primary key, auto-incremented
+- <code>system_id</code> (FK) - Integer, foreign key to <code>systems.id</code>
+- <code>timestamp</code> - DateTime with timezone, indexed, server default: current timestamp
+- <code>cpu_usage</code> - Float (percentage)
+- <code>memory_percent</code> - Float (percentage)
+- <code>memory_used</code> - BigInteger (bytes)
+- <code>disk_free</code> - BigInteger (bytes)
+- <code>disk_usage</code> - Float (percentage)
+- <code>disk_read_bytes</code> - BigInteger, default: 0 (cumulative)
+- <code>disk_write_bytes</code> - BigInteger, default: 0 (cumulative)
+- <code>network_sent</code> - BigInteger (bytes)
+- <code>network_recv</code> - Float (bytes)
+- <code>process_count</code> - Integer
+- <code>boot_time</code> - String, nullable
+- <code>uptime_seconds</code> - Integer, nullable
+- <code>uptime_human</code> - String, nullable (human-readable format)
+- <code>top_processes</code> - JSON, nullable (list of resource-intensive processes)</p>
+<p><strong>Relationships:</strong>
+- Many-to-one with <code>systems</code></p>
+<hr />
+<h3 id="5-tickets">5. <strong>tickets</strong></h3>
+<p><strong>Purpose:</strong> Manages support tickets or issues reported for specific systems. Tracks ticket lifecycle from creation to resolution.</p>
+<p><strong>Attributes:</strong>
+- <code>id</code> (PK) - Integer, primary key, auto-incremented
+- <code>system_id</code> (FK) - Integer, foreign key to <code>systems.id</code>
+- <code>message</code> - String, not null (ticket description)
+- <code>status</code> - String, default: "OPEN" (values: "OPEN", "RESOLVED")
+- <code>resolved_at</code> - DateTime with timezone, nullable
+- <code>created_at</code> - DateTime with timezone, server default: current timestamp</p>
+<p><strong>Relationships:</strong>
+- Many-to-one with <code>systems</code></p>
+<hr />
+<h3 id="6-alert_settings">6. <strong>alert_settings</strong></h3>
+<p><strong>Purpose:</strong> Stores customizable threshold configurations for alert generation. Allows per-system or global threshold settings for proactive monitoring.</p>
+<p><strong>Attributes:</strong>
+- <code>id</code> (PK) - Integer, primary key, auto-incremented
+- <code>system_id</code> (FK) - Integer, foreign key to <code>systems.id</code>, nullable (null = global settings)
+- <code>cpu_threshold</code> - Float, default: 90.0 (percentage)
+- <code>memory_threshold</code> - Float, default: 90.0 (percentage)
+- <code>disk_threshold</code> - Float, default: 90.0 (percentage)</p>
+<p><strong>Relationships:</strong>
+- Many-to-one with <code>systems</code> (optional)</p>
+<hr />
+<h2 id="database-relationships-summary">Database Relationships Summary</h2>
+<div class="codehilite"><pre><span></span><code>users (1)
+  └─ Authentication only (no direct FK relationships)
+
+systems (1)
+  ├─ alerts (Many)
+  ├─ metrics (Many)
+  ├─ tickets (Many)
+  └─ alert_settings (Many)
+</code></pre></div>
+
+<h2 id="key-design-features">Key Design Features</h2>
+<ol>
+<li><strong>Normalization:</strong> Data is properly normalized to reduce redundancy and maintain integrity.</li>
+<li><strong>Cascade Deletion:</strong> When a system is deleted, all related alerts, metrics, and tickets are automatically removed.</li>
+<li><strong>Indexing:</strong> Strategic indexes on frequently queried fields (<code>email</code>, <code>hostname</code>, <code>timestamp</code>) for optimal performance.</li>
+<li><strong>Timezone Awareness:</strong> All timestamps use timezone-aware DateTime fields for accurate global monitoring.</li>
+<li><strong>Flexible Storage:</strong> JSON columns for complex nested data (drivers, top_processes).</li>
+<li><strong>Soft Deletes:</strong> <code>is_active</code> flags allow deactivation without data loss.</li>
+<li><strong>Audit Trail:</strong> <code>created_at</code> timestamps on all tables for historical tracking.</li>
+</ol>
+    </body>
+    </html>
+    

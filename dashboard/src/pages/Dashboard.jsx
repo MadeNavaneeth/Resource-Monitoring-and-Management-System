@@ -16,9 +16,14 @@ const Dashboard = () => {
     const serverUrl = `${window.location.protocol}//${window.location.hostname}:8000`;
 
     useEffect(() => {
-        fetchData();
-        const interval = setInterval(fetchData, 1000);
-        return () => clearInterval(interval);
+        let isMounted = true;
+        const poll = async () => {
+            if (!isMounted) return;
+            await fetchData();
+            if (isMounted) setTimeout(poll, 3000); // 3-second interval, waits for previous fetch
+        };
+        poll();
+        return () => { isMounted = false; };
     }, []);
 
     const fetchData = async () => {
